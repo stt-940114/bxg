@@ -2,7 +2,13 @@
  * Created by Administrator on 2017/3/19 0019.
  */
 // 讲师管理
-define(["jquery", "template", "bootstrap"], function ($, template) {
+// overlay设置在这里是因为，要保证在发送ajax请求前执行overlay，要不然无法检测到ajaxStart和ajaxStop事件。
+define(["jquery", "template","util","bootstrap","overlay"], function ($,template,util) {
+   // 设置菜单选中功能
+   //  var pathname=location.pathname;
+    // alert(pathname);
+   util.setMenu(location.pathname);
+    
     // 实现教师数据列表的加载
     $.ajax({
         type: "get",

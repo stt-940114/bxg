@@ -26,8 +26,8 @@ define(["jquery","echarts","template","cookie"],function ($,echarts,template) {/
 			datatype:"json",
 			success:function (data) {
 				if(data.code==200){
-//                       在result这个属性中有这个对象
-					console.log(data.result);
+//               在result这个属性中有这个对象
+			   console.log(data.result);
 //   Object {tc_name: "admin", tc_avatar: "http://static.botue.com/images/avatar/58ad2b9c0fcd5.jpg"}
 
 //                头像，用户名可以通过这个页面获取，通过cookie的跨页面的功能，传递给主页面，设置上头像和名字
@@ -50,14 +50,15 @@ define(["jquery","echarts","template","cookie"],function ($,echarts,template) {/
 
 	// 转为json
 
-
-
 	var obj=JSON.parse($.cookie("logInfo"));
 //            console.log(obj);//对象
-	$(".aside .profile img").attr("src",obj.tc_avatar);
-	$(".aside .profile h4").html(obj.tc_name);
-	
-	
-
-
+// 	$(".aside .profile img").attr("src",obj.tc_avatar);
+// 	$(".aside .profile h4").html(obj.tc_name);
+	  var tpl='<div class="avatar img-circle" >'+
+		'<img src="{{tc_avatar}}">'+
+		'</div>'+
+		'<h4>{{tc_name}}</h4>'
+	var render=template.compile(tpl);//返回渲染函数
+	var html=render(obj);
+	$(".aside .profile").html(html);
 })

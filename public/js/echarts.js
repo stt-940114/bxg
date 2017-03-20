@@ -1,4 +1,11 @@
-define(["echarts"],function (echarts) {
+define(["echarts","util",],function (echarts,util) {
+
+// 选中菜单--因为echarts.js在主页index中被引入，所以在这里加入util中的方法
+//    模块之间的相互引用，等util加载完之后才会执行该方法
+    util.setMenu(location.pathname);
+
+
+
     // 基于准备好的dom，初始化echarts实例
     var myChart = echarts.init(document.getElementById('main'));
 
